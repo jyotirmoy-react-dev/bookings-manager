@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routing from './Routing';
+import 'semantic-ui-css/semantic.min.css';
 //import {observer,Provider,inject} from  'mobx-react';
 //applying redux
 import storeFactory from './store'

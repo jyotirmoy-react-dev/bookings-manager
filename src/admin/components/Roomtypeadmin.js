@@ -4,32 +4,34 @@ import {ButtonGroup, Button, DropdownButton, MenuItem, Collapse, Well, SplitButt
 import axios from 'axios';
 import moment from 'moment';
 import {connect} from 'react-redux';
-import {saveblogs} from '../../actions/blogsactions';
+import {saveRoomtype} from '../../actions/roomtypeactions';
 
-class Blogsadmin extends Component {
+class Roomtypeadmin extends Component {
     constructor(props){
     	super(props);
-      this.state = { showModal: false, listingDetail:'',imageUrl:'',uploadStat:''};
+      this.state = { showModal: false, roomInfo:{}};
       this.close = this.close.bind(this);
       this.open = this.open.bind(this);
+      this.updateRoomtype = this.updateRoomtype.bind(this);
     }
     close() {
       this.setState({ showModal: false });
     }
 
     open() {
-      this.setState({ showModal: true ,imageUrl:'',uploadStat:''});
+      this.setState({ showModal: true});
     }
-    saveblogs(e){
+    updateRoomtype(e){
+      let tempData = this.state.roomInfo;
+      let inputName = e.target.name;
+      let inputValue = e.target.value;
+      tempData[inputName] = inputValue;
+      this.setState({roomInfo:tempData});
+    }
+    saveRoomtype(e){
       e.preventDefault();
-      let send_data = {
-        "date_blog": moment(Date.now()).format('DD-MM-YYYY'),
-        "title": this.refs.title.value,
-        "image_url": this.state.imageUrl,
-        "content_blog": this.refs.content.value,
-        "visible": this.refs.visible.checked?'1':'0'
-      };
-      this.props.saveblogs(send_data);
+      let send_data = this.state.roomInfo;
+      this.props.saveRoomtype(send_data);
     }
 
     uploadImage(e){
@@ -63,29 +65,13 @@ class Blogsadmin extends Component {
                  <table className="table table-bordered">
                   <tbody>
                             <tr>
-                                <td colSpan="2"><b>Title</b></td>
-                                <td colSpan="2"><input ref="title" type="text" className="form-control"  size="30" /></td>
+                                <td colSpan="2"><b>RoomType Title</b></td>
+                                <td colSpan="2"><input name="RName" type="text" onChange={this.updateRoomtype.bind(this)} className="form-control"  size="30" /></td>
                             </tr>
-                            <tr>
-                                <td colSpan="4"><b>New Blog</b>
-                                <br/>
-                                <textarea ref="content" cols="40" rows="10" className="form-control"></textarea>
-                            </td>
-
-                            </tr>
-
-                            <tr>
-                              <td>Image</td><td ><input type="file" id="img_file" ref='img_file' onChange={this.uploadImage.bind(this)} />
-                              </td>
-                              <td><img src={this.state.imageUrl} style={{'width':'45%'}} /> </td>
-                            </tr>
-                            <tr>
-                              <td>Visible <input type="checkbox" ref="visible" /></td><td ></td>
-                              <td> </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
-                    <input type="submit" onClick={this.saveblogs.bind(this)} className="btn btn-primary"  value="Add Blogs" />
+                    <input type="submit" onClick={this.saveRoomtype.bind(this)} className="btn btn-primary"  value="Add Blogs" />
               
                 </Modal.Body>
               <Modal.Footer>
@@ -105,11 +91,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveblogs(send_data){
+    saveRoomtype(send_data){
       dispatch(
-        saveblogs(send_data)
+        saveRoomtype(send_data)
       )
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Blogsadmin)
+export default connect(mapStateToProps, mapDispatchToProps)(Roomtypeadmin)

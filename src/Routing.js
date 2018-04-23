@@ -5,22 +5,18 @@ import {Provider} from  'mobx-react';
 import App from './App';
 import Home from './components/Home';
 import Managehotels from './components/Managehotels';
-import Banners from './components/Banners';
-import Blogs from './components/Blogs';
+import Category from './components/Category';
+import Roomtype from './components/Roomtype';
 import Cias from './components/Cias';
-import Dtc from './components/Dtc';
-import Login from './components/Login';
 const   Routing = ()=>{
     return (
           <Router history={hashHistory}>
           <Route path={'/'} component={App}>
               <IndexRoute component={Home} />
               <Route path={'/managehotels'} component={Managehotels}></Route>
-              <Route path={'/banners'} component={Banners}></Route>
-              <Route path={'/blogs'} component={Blogs}></Route>
-              <Route path={'/cias'} component={Cias}></Route>
-              <Route path={'/dtc'} component={Dtc}></Route>
-              <Route path={'/login'} component={Login}></Route>
+              <Route path={'/managecategory'} component={Category}></Route>
+              <Route path={'/manageroomtype'} component={Roomtype}></Route>
+              <Route path={'/cias'} component={Cias}></Route>              
           </Route>
           </Router>
     );

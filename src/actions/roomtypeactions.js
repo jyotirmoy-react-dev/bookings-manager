@@ -1,13 +1,13 @@
 import axios from 'axios';
 import C from './constants';
 import {addErrors} from './errorhandler';
-const baseUrl = "https://treco-admin-backend-service.herokuapp.com/api/blogs_tables";
+const baseUrl = "http://localhost:3000/api/room_category_masters";
 
-export const fetchAllBlogs = () => (dispatch,getState)=>{
+export const fetchAllRoomtypes = () => (dispatch,getState)=>{
   axios.get(baseUrl)
   .then((value) => {
     dispatch({
-      type:C.FETCH_BLOGS_ALL,
+      type:C.FETCH_ROOMTYPES,
       payload:value.data
     })
   })
@@ -16,21 +16,21 @@ export const fetchAllBlogs = () => (dispatch,getState)=>{
   })
 };
 
-export const deleteBlog = (id) => (dispatch,getState)=>{
+export const deleteRoomtype = (id) => (dispatch,getState)=>{
   axios.delete(baseUrl+'/'+id)
   .then((value) => {
-    dispatch(fetchAllBlogs())
+    dispatch(fetchAllRoomtypes())
   })
   .catch((err) => {
     dispatch(addErrors(err));
   })
 };
 
-export const saveblogs = (send_data) => (dispatch,getState)=>{
+export const saveRoomtype = (send_data) => (dispatch,getState)=>{
   
   axios.post(baseUrl,send_data)
   .then((value)=>{
-    dispatch(fetchAllBlogs())
+    dispatch(fetchAllRoomtypes())
   })
   .catch((err)=>{
     dispatch(addErrors(err));

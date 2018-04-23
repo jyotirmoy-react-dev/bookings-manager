@@ -2,12 +2,12 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {ButtonGroup, Button, DropdownButton, MenuItem, Collapse, Well, SplitButton, Glyphicon, Table, Checkbox, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import {fetchAllBanners,deleteBanner,updateBanner} from '../actions/bannersaction';
-import Banneradmin from '../admin/components/Banneradmin';
-import Viewdetails from './viewDetails';
-class Banners extends Component {
+import {fetchAllCategories,deleteCategory} from '../actions/categoryactions';
+import Categoryadmin from '../admin/components/Categoryadmin';
+//import Banneradmin from '../admin/components/Banneradmin';
+class Category extends Component {
     componentDidMount() {
-      this.props.fetchAllBanners();
+      this.props.fetchAllCategories();
     }
     render() {
       let self = this;
@@ -25,25 +25,23 @@ class Banners extends Component {
             };
             self.props.updateBanner(send_data);
       }
-      let newsdetails = this.props.banners[0];
-      function imageView(cell, row){
-        return <Viewdetails imgsrc={cell} title={row.title} id={row.id}  type='banner' />
-        //return <span><img src={cell} style={{'width':'30%'}} /></span>;
-      }
+      let newsdetails = this.props.categories[0];
+      
       function visibleFormat(cell,row){
         return (<span>{cell=='1'?'Y':'N'}</span>);
       }
       function deleteButton(cell, row){
-        return <button className="btn btn-primary" onClick={(e)=>{
-            self.props.deleteBanner(cell)
-          }}><span className="glyphicon glyphicon-trash"></span></button>
+        return <a href=""  onClick={(e)=>{
+            e.preventDefault();
+            self.props.deleteCategory(cell)
+          }}><span className="glyphicon glyphicon-trash"></span></a>
       }
         return (
           <div className="container-fluid">
 
                  <div className="row">
                      <div className="col-lg-12">
-                         <h3> <span className="glyphicon glyphicon-user"></span> Treco Banners {this.props.saveStatus} </h3>
+                         <h3> <span className="glyphicon glyphicon-list"></span> Categories {this.props.saveStatus} </h3>
                          <hr/>
                      </div>
                  </div>
@@ -52,17 +50,15 @@ class Banners extends Component {
                          <br/>
                          <div className="panel panel-default" style={{"borderColor": "#3f51b5"}}>
                              <div className="panel-heading2" style={{"backgroundColor": "#3f51b5 !important","borderColor": "#3f51b5"}}>
-                                 Manage Banners Panel
+                                 Manage Category Panel
                              </div>
                              <div className="panel-body" style={{"minHeight":"170px"}}>
 
-                               <Banneradmin />
+                               <Categoryadmin/>
                                <BootstrapTable data={newsdetails} cellEdit={ cellEditProp } striped={true} hover={true}    pagination={true} search={true} exportCSV={true}   bodyStyle={{'zIndex': '-1 !important','overflow':'visible'}}>
                                                 <TableHeaderColumn dataField="id"  isKey={true}  dataSort={true}>Id</TableHeaderColumn>
-                                                <TableHeaderColumn dataField="title"  dataSort={true}>Title</TableHeaderColumn>
-                                                <TableHeaderColumn dataField="visible"  dataSort={true} dataFormat={visibleFormat} editable={ { type: 'checkbox', options: { values: 'Y:N' } } } >Visible</TableHeaderColumn>
-                                                <TableHeaderColumn dataField="image_url"   dataSort={true} editable={ false } dataFormat={imageView} >View Image</TableHeaderColumn>
-                                                <TableHeaderColumn dataField="id"   dataSort={true} dataFormat={deleteButton} >Delete</TableHeaderColumn>
+                                                <TableHeaderColumn dataField="CName"  dataSort={true}>Category Name</TableHeaderColumn> 
+                                                <TableHeaderColumn dataField="id" dataFormat={deleteButton} >Delete</TableHeaderColumn>                                               
                               </BootstrapTable>
 
                              </div>
@@ -78,28 +74,24 @@ class Banners extends Component {
 
 function mapStateToProps(state) {
   return{
-    banners:state.bannerall.banners,
-    saveStatus:state.saveStatus
+    categories:state.categoryall.categories
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAllBanners(){
+    fetchAllCategories(){
       dispatch(
-        fetchAllBanners()
+        fetchAllCategories()
       )
     }
     ,
-    deleteBanner(id){
+    deleteCategory(id){
       dispatch(
-        deleteBanner(id)
+        deleteCategory(id)
       )
-    },
-    updateBanner(send_data){
-      dispatch(updateBanner(send_data));
     }
   }
 }
- export default connect(mapStateToProps,mapDispatchToProps)(Banners);
+ export default connect(mapStateToProps,mapDispatchToProps)(Category);
 
  

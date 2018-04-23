@@ -29,14 +29,8 @@ export const saveHotels = (send_data) => (dispatch,getState)=>{
     type:C.ADD_STATUS,
     payload:'...Loading....'
   });
-  let params = {
-  "title": send_data.title,
-  "content": send_data.content,
-  "image_url": send_data.image_url,
-  "visible": send_data.visible,
-  "date_news": send_data.date_news
-  };
-  axios.post(baseUrl+'/news_tables',params)
+  
+  axios.post(baseUrl+'/hotel_masters',send_data)
   .then((value) => {
     dispatch(fetchAllHotels());
   })
@@ -51,11 +45,45 @@ export const saveHotels = (send_data) => (dispatch,getState)=>{
 }
 
 export const deleteHotels = (id)=>(dispatch,getState)=>{
-  axios.delete(baseUrl+'/news_tables/'+id)
+  axios.delete(baseUrl+'/hotel_masters/'+id)
   .then((value) => {
     dispatch(fetchAllHotels());
   })
   .catch((err) => {
     console.error(err);
   })
+}
+
+
+export const getHotelCategoryList = (id) => (dispatch,getState) => {
+  axios.get(baseUrl+'/hotel_masters/'+id+'/hotelCategoryTables')
+  .then(res=>{
+    dispatch({
+      type: C.FETCH_HOTEL_BY_CATEGORY,
+      payload: res.data
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  })
+}
+
+export const SavehotelCategory = (send_data,id) => (dispatch,getState) =>{
+  axios.post(baseUrl+'/hotel_category_tables',send_data)
+  .then(res => {
+    dispatch(getHotelCategoryList(id));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
+export const deleteCategory = (HCode,fk) => (dispatch,getState) => {
+  axios.delete(baseUrl+'/hotel_masters/'+HCode+'/hotelCategoryTables/'+fk)
+  .then(res=>{
+    dispatch(getHotelCategoryList(HCode));
+  })
+.catch(err => {
+  console.log(err);
+})
 }

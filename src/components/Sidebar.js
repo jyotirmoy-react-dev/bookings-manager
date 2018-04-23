@@ -8,25 +8,22 @@ export default class Sidebar extends Component {
              <ul className="sidebar-nav">
                  <li className="sidebar-brand" style={{"color": "#fff"}} className="active">
                      <a href="#/" style={{"color": "#fff"}} >
-                         <span className="glyphicon glyphicon glyphicon-dashboard"></span>   Treco Admin
+                         <span className="glyphicon glyphicon glyphicon-dashboard"></span>   Bookings Manager
                      </a>
                  </li>
                  <li>
                      <a href="#/managehotels">
-                     <span className="glyphicon.glyphicon-edit"></span>  Manage Hotels</a>
+                     <span className="glyphicon glyphicon-pencil"></span>   Manage Hotels</a>
                  </li>
                  <li>
-                 <span className="glyphicon.glyphicon-edit"></span><a href="#/banners">Banners</a>
+                 <a href="#/managecategory"><span className="glyphicon glyphicon-pencil"></span>  Manage Category</a>
                  </li>
                  <li>
-                 <span className="glyphicon.glyphicon-edit"></span>   <a href="#/blogs">Blogs</a>
+                 <a href="#/manageroomtype"><span className="glyphicon glyphicon-pencil"></span>  Manage Roomtype</a>
                  </li>
                  <li>
-                 <span className="glyphicon.glyphicon-edit"></span>   <a href="#/cias">NSF CIAS</a>
-                 </li>
-                 <li>
-                 <span className="glyphicon.glyphicon-edit"></span>   <a href="#/dtc">BS EN 15092</a>
-                 </li>
+                 <a href="#/cias"><span className="glyphicon glyphicon-pencil"></span>  NSF CIAS</a>
+                 </li>                
              </ul>
          </div>
         );

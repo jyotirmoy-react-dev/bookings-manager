@@ -1,8 +1,8 @@
 import C from '../actions/constants';
 import {combineReducers} from 'redux';
-import {banners} from './bannerReducer';
+import {categories,hotelcategories} from './categoryReducer';
 import {ciasfiles,ciasfile} from './ciasReducer';
-import {blogsall,blog} from './blogsReducer';
+import {roomtypes} from './roomtypeReducer';
 import {dtcfiles,dtcfile} from './dtcreducer';
 
 export const hotels = (state=[],action)=>{
@@ -19,7 +19,16 @@ export const hotels = (state=[],action)=>{
 
 
 
-
+export const hotelbycategory = (state=[],action)=>{
+  switch (action.type) {
+    case C.FETCH_HOTEL_BY_CATEGORY:
+      return action.payload;
+      break;  
+    default:
+    return state;
+      break;
+  }
+}
 
 
 export const error = (state=[],action)=>{
@@ -55,10 +64,12 @@ export const saveStatus = (state='',action)=>{
 
 export default combineReducers({
   hotelsall:combineReducers({
-    hotels
+    hotels,
+    hotelbycategory
   }),
-  bannerall:combineReducers({
-    banners
+  categoryall:combineReducers({
+    categories,
+    hotelcategories
   }),
   ciasall:combineReducers({
     ciasfiles,
@@ -68,9 +79,8 @@ export default combineReducers({
     dtcfiles,
     dtcfile
   }),
-  blogsdetails:combineReducers({
-    blogsall,
-    blog
+  roomtypesall:combineReducers({
+    roomtypes
   }),
   error,
   saveStatus,
