@@ -54,7 +54,7 @@ class Roomtypeadmin extends Component {
     render() {
         return (
             <div className="class-name">
-            <button className="btn btn-primary" onClick={this.open.bind(this)}><span className="glyphicon glyphicon-plus"></span> Add Blog</button>
+            <button className="btn btn-primary" onClick={this.open.bind(this)}><span className="glyphicon glyphicon-plus"></span> Add Roomtype</button>
 
             <Modal show={this.state.showModal} onHide={this.close.bind(this)} bsSize="large">
               <Modal.Header closeButton>
@@ -71,7 +71,7 @@ class Roomtypeadmin extends Component {
                            
                         </tbody>
                     </table>
-                    <input type="submit" onClick={this.saveRoomtype.bind(this)} className="btn btn-primary"  value="Add Blogs" />
+                    <input type="submit" onClick={this.saveRoomtype.bind(this)} className="btn btn-primary"  value="Add Roomtype" />
               
                 </Modal.Body>
               <Modal.Footer>

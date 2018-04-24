@@ -7,7 +7,8 @@ import Home from './components/Home';
 import Managehotels from './components/Managehotels';
 import Category from './components/Category';
 import Roomtype from './components/Roomtype';
-import Cias from './components/Cias';
+import Transportation from './components/Transportation';
+import Bookingstemplate from './components/Bookingstemplate';
 const   Routing = ()=>{
     return (
           <Router history={hashHistory}>
@@ -16,7 +17,8 @@ const   Routing = ()=>{
               <Route path={'/managehotels'} component={Managehotels}></Route>
               <Route path={'/managecategory'} component={Category}></Route>
               <Route path={'/manageroomtype'} component={Roomtype}></Route>
-              <Route path={'/cias'} component={Cias}></Route>              
+                <Route path={'/managetransport'} component={Transportation}></Route>
+          <Route path={'/bookingstemplate/:hotelid'} component={Bookingstemplate}></Route>              
           </Route>
           </Router>
     );

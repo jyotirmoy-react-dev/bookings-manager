@@ -5,6 +5,7 @@ import {fetchAllRoomtypes } from '../actions/roomtypeactions';
 //Local Imports
 import {ButtonGroup, Button, DropdownButton, MenuItem, Collapse, Well, SplitButton, Glyphicon, Table, Checkbox, FormGroup, ControlLabel, FormControl,Modal} from 'react-bootstrap';
 import Categoryadd from './Categoryadd';
+import Roomtypeadd from './Roomtypeadd';
 
 class Addtocategory extends Component {
  constructor(props){
@@ -49,12 +50,8 @@ class Addtocategory extends Component {
             {this.props.popuptype=='category'?
             <Categoryadd hotelid={this.props.hotelid} categories={categories} />
             :
-            <div className="form-group">
-            <select className="form-control">
-            <option>Select Room Type</option>
-            </select>
-            <button className="btn btn-primary">Save</button>
-            </div>}
+            <Roomtypeadd hotelid={this.props.hotelid} roomtypes={roomtypes} />
+            }
            </Modal.Body>
         
        </Modal>

@@ -4,8 +4,10 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {fetchAllHotels,deleteHotels} from '../actions/hotelactions';
 //import Newsadmin from '../admin/components/Newsadmin';
 import Addtocategory from './addToCategory';
+import Transporthoteladd from './Transporthoteladd';
 import Hotelsadmin from '../admin/components/Hotelsadmin';
 import {fetchAllCategories,getHotelsbyCategories} from '../actions/categoryactions';
+import { fetchAllRoomtypes, hetHotelsByRoomType} from '../actions/roomtypeactions';
 class Managehotels extends Component {
    constructor (props) {
      super(props)
@@ -18,6 +20,8 @@ class Managehotels extends Component {
       this.props.fetchAllHotels();
       this.props.fetchAllCategories();
       this.props.getHotelsbyCategories();
+      this.props.fetchAllRoomtypes();
+      this.props.hetHotelsByRoomType();
     }
     filterByCategory(e){
       let filteredHotels = [];
@@ -39,10 +43,29 @@ class Managehotels extends Component {
       }
       this.setState({filteredHotels});
     }
+  filterByRoomtype(e){
+    let filteredHotels = [];
+    if(e.target.value != ""){
+      let filteredRoomtypes = this.props.hotelroomtypes.filter(item => {
+        return item.RCode == e.target.value;
+      });
+      this.props.hotels[0].filter(item => {
+        filteredRoomtypes.filter(item2 => {
+          if (item.id == item2.HCode) {
+            filteredHotels.push(item);
+          }
+        });
+      });
+    } else {
+      filteredHotels = [];
+    }
+    this.setState({ filteredHotels });
+  }
     render() {
       let hoteldetails = [];
       hoteldetails = this.props.hotels[0];let self = this;
       let categoryList = this.props.categorylist[0]?this.props.categorylist[0]:[];
+      let roomTypes = this.props.roomtypes[0] ? this.props.roomtypes[0]:[];
       if(this.state.filteredHotels.length>0){
         hoteldetails = this.state.filteredHotels;
       }
@@ -50,10 +73,12 @@ class Managehotels extends Component {
         return (<div style={{'display':'flex'}}>
           <Addtocategory popuptype="category" hname={row.HName} hotelid={row.id} />&nbsp;&nbsp;
            <Addtocategory popuptype="roomtype" hname={row.HName} hotelid={row.id} />&nbsp;&nbsp;
+           <Transporthoteladd popuptype="transport" hname={row.HName} hotelid={row.id} />&nbsp;&nbsp;          
           <a href="" onClick={(e)=>{
             e.preventDefault();
             self.props.deleteHotels(cell)
-          }}><span className="glyphicon glyphicon-trash"></span></a>
+          }}><span className="glyphicon glyphicon-trash"></span></a>&nbsp;&nbsp;
+          <a href={'#/bookingstemplate/'+row.id} ><span className="glyphicon glyphicon-pencil"></span></a>
         </div>);
       }
         return (
@@ -85,6 +110,12 @@ class Managehotels extends Component {
                                 </select>
                                 </div>
                                 <div className="col-lg-4">
+                                <select className="form-control" onChange={this.filterByRoomtype.bind(this)}>
+                                  <option value="">Filter By Roomtype</option>
+                                    {roomTypes.map(item => {
+                                        return <option key={item.id} value={item.RName}>{item.RName}</option>
+                                    })}
+                                </select>
                                 </div>
                                 <div className="col-lg-4">
                                 </div>
@@ -115,7 +146,9 @@ function mapStateToProps(state) {
     hotels:state.hotelsall.hotels,
     saveStatus:state.saveStatus,
     categorylist:state.categoryall.categories,
-    hotelcategories: state.categoryall.hotelcategories
+    hotelcategories: state.categoryall.hotelcategories,
+    roomtypes: state.roomtypesall.roomtypes,
+    hotelroomtypes: state.roomtypesall.hotelsByRoomType
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -140,7 +173,13 @@ function mapDispatchToProps(dispatch) {
       dispatch(
         getHotelsbyCategories()
       );
-    }
+    },
+    fetchAllRoomtypes(){
+      dispatch(fetchAllRoomtypes());
+    },
+    hetHotelsByRoomType(){
+      dispatch(hetHotelsByRoomType());
+    },
   }
 }
  export default connect(mapStateToProps,mapDispatchToProps)(Managehotels);

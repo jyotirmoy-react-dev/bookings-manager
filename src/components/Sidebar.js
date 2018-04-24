@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
                  <a href="#/manageroomtype"><span className="glyphicon glyphicon-pencil"></span>  Manage Roomtype</a>
                  </li>
                  <li>
-                 <a href="#/cias"><span className="glyphicon glyphicon-pencil"></span>  NSF CIAS</a>
+                 <a href="#/managetransport"><span className="glyphicon glyphicon-pencil"></span>  Manage Transportation</a>
                  </li>                
              </ul>
          </div>

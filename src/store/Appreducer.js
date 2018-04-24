@@ -1,10 +1,9 @@
 import C from '../actions/constants';
 import {combineReducers} from 'redux';
 import {categories,hotelcategories} from './categoryReducer';
-import {ciasfiles,ciasfile} from './ciasReducer';
-import {roomtypes} from './roomtypeReducer';
+import { roomtypes, hotelbyroomtype, hotelsByRoomType} from './roomtypeReducer';
 import {dtcfiles,dtcfile} from './dtcreducer';
-
+import { transports, hotelsbytransport} from './transportReducer';
 export const hotels = (state=[],action)=>{
   switch (action.type) {
     case C.FETCH_ALL_HOTELS:
@@ -71,16 +70,18 @@ export default combineReducers({
     categories,
     hotelcategories
   }),
-  ciasall:combineReducers({
-    ciasfiles,
-    ciasfile
-  }),
   dtcall:combineReducers({
     dtcfiles,
     dtcfile
   }),
   roomtypesall:combineReducers({
-    roomtypes
+    roomtypes,
+    hotelbyroomtype,
+    hotelsByRoomType
+  }),
+  transportall: combineReducers({
+    transports,
+    hotelsbytransport
   }),
   error,
   saveStatus,
