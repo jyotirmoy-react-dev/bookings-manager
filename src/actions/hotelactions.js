@@ -87,3 +87,15 @@ export const deleteCategory = (HCode,fk) => (dispatch,getState) => {
   console.log(err);
 })
 }
+
+export const getHotelDetails = (id) => (dispatch,getState) => {
+  axios.get(baseUrl +`/hotel_masters/${id}`)
+  .then(value => {
+    dispatch({
+      type: C.FETCH_HOTEL_DETAILS,
+      payload:value.data
+    });
+    }).catch(err => {
+      console.log(err);
+    })
+}

@@ -61,10 +61,19 @@ export const saveStatus = (state='',action)=>{
   }
 }
 
+export const hotelDetails = (state={},action) => {
+  if (action.type == C.FETCH_HOTEL_DETAILS) {
+    return action.payload;
+  }
+  else {
+    return state;
+  }
+}
 export default combineReducers({
   hotelsall:combineReducers({
     hotels,
-    hotelbycategory
+    hotelbycategory,
+    hotelDetails
   }),
   categoryall:combineReducers({
     categories,
