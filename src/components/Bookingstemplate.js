@@ -23,35 +23,52 @@ class Bookingstemplate extends Component {
             <div>
                 <h2>Bookings Template</h2>
                 <hr/>
-                Dear Customer,
-                    <p>Thank you form contacting us here are the details of your booking.</p>
+                <div className="panel panel-default">
+                <div className="panel-body">
+                    Dear Customer,
+                    <p>Thank you for contacting us here are the details of your booking.</p>
                     <br/>
-                <label>Hotel Name:</label>{this.props.hotelDetails.HName}<br/>
-                <label>Hotel Contact Person:</label>{this.props.hotelDetails.HContact}<br/>
-                <label>Hotel Phone:</label>{this.props.hotelDetails.HPhone}<br/>
-                <label>Hotel Email Id:</label>{this.props.hotelDetails.HEmail}<br/>
+                    <table className="table table-bordered" style={{'width':'50%'}}>
+                        <tbody>
+                        <tr><td><label>Hotel Name:</label></td><td>{this.props.hotelDetails.HName}</td></tr>
+                        <tr><td><label>Hotel Contact Person:</label></td><td>{this.props.hotelDetails.HContact}</td></tr>
+                        <tr><td><label>Hotel Phone:</label></td><td>{this.props.hotelDetails.HPhone}</td></tr>
+                        <tr><td><label>Hotel Email Id:</label></td><td>{this.props.hotelDetails.HEmail}</td></tr>
+                        </tbody>
+                    </table>
+               
+                <br/>
                 <h4>Room type Details Are As Follows:</h4>
-                <table>
+                <table className="table table-bordered table-strpped" style={{'width':'50%'}}>
                 <thead>
+                    <tr>
                     <th>Room Type</th>
                     <th>Price</th>
+                    </tr>
                 </thead>
                 <tbody>
                         {this.props.hotelroomtypes.map(item => {
-                            return <tr><td>{item.RCode}</td><td>______</td></tr>
+                            return <tr><td>{item.RCode}</td><td></td></tr>
                         })}</tbody>
                 </table>
                 <h4>Transport  Details Are As Follows:</h4>
-                <table>
+                <table className="table table-bordered table-strpped" style={{'width':'50%'}}>
                     <thead>
+                        <tr>
                         <th>Transportation</th>
                         <th>Price</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {this.props.hotelTransports.map(item => {
-                            return <tr><td>{item.TCode}</td><td>______</td></tr>
+                            return <tr><td>{item.TCode}</td><td></td></tr>
                         })}</tbody>
                 </table>
+                <br/>
+                Thanks and Regards,
+                </div>
+                </div>
+                
             </div>
         )
     }
