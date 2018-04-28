@@ -9,6 +9,7 @@ import Category from './components/Category';
 import Roomtype from './components/Roomtype';
 import Transportation from './components/Transportation';
 import Bookingstemplate from './components/Bookingstemplate';
+import Login from "./components/Login";
 const   Routing = ()=>{
     return (
           <Router history={hashHistory}>
@@ -18,6 +19,7 @@ const   Routing = ()=>{
               <Route path={'/managecategory'} component={Category}></Route>
               <Route path={'/manageroomtype'} component={Roomtype}></Route>
                 <Route path={'/managetransport'} component={Transportation}></Route>
+                <Route path={'/login'} component={Login}></Route>
           <Route path={'/bookingstemplate/:hotelid'} component={Bookingstemplate}></Route>              
           </Route>
           </Router>

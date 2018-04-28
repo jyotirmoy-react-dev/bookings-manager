@@ -1,6 +1,13 @@
 import axios from 'axios';
 import C from './constants';
 const baseUrl = "http://localhost:3000/api";
+if(window.sessionStorage.getItem('token')){
+axios.defaults.params = {
+                access_token: window
+                    .sessionStorage
+                    .getItem('token')
+                }
+}
 //Thunk is Higher order Function
 export const fetchAllHotels = ()=> (dispatch,getState)=>{
   dispatch({

@@ -4,6 +4,7 @@ import { getHotelDetails, getHotelCategoryList} from '../actions/hotelactions';
 import { getHotelByRoomType} from '../actions/roomtypeactions';
 import { getHotelByTransports} from '../actions/transportactions';
 class Bookingstemplate extends Component {
+
     constructor(props) {
         super(props);
         this.state = {};
@@ -18,7 +19,7 @@ class Bookingstemplate extends Component {
     
     render () {
         
-        console.log(this.props.hotelDetails);
+        
         return (
             <div>
                 <h2>Bookings Template</h2>

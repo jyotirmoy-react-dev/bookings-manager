@@ -2,7 +2,13 @@ import axios from 'axios';
 import C from './constants';
 import {addErrors} from './errorhandler';
 const baseUrl = "http://localhost:3000/api";
-
+if(window.sessionStorage.getItem('token')){
+axios.defaults.params = {
+                access_token: window
+                    .sessionStorage
+                    .getItem('token')
+                }
+}
 export const fetchAllRoomtypes = () => (dispatch,getState)=>{
   axios.get(baseUrl +'/room_category_masters')
   .then((value) => {

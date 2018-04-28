@@ -4,6 +4,7 @@ import {categories,hotelcategories} from './categoryReducer';
 import { roomtypes, hotelbyroomtype, hotelsByRoomType} from './roomtypeReducer';
 import {dtcfiles,dtcfile} from './dtcreducer';
 import { transports, hotelsbytransport} from './transportReducer';
+import {loginstat} from './Loginreducer';
 export const hotels = (state=[],action)=>{
   switch (action.type) {
     case C.FETCH_ALL_HOTELS:
@@ -94,4 +95,7 @@ export default combineReducers({
   }),
   error,
   saveStatus,
+  loginall:combineReducers({
+    loginstat
+  }),
 })

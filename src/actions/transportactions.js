@@ -2,7 +2,13 @@ import axios from 'axios';
 import {addErrors} from './errorhandler';
 import C from './constants';
 const baseUrl = "http://localhost:3000/api";
-
+if(window.sessionStorage.getItem('token')){
+axios.defaults.params = {
+                access_token: window
+                    .sessionStorage
+                    .getItem('token')
+                }
+}
 export const fetAllTransports = () => (dispatch,getState) => {
   axios.get(baseUrl +'/transport_masters')
   .then(value => {
