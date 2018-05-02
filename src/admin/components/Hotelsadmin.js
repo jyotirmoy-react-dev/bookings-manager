@@ -71,6 +71,11 @@ class Hoteladmin extends Component {
                                 <td colSpan="2"><b>Hotel Email</b></td>
                                 <td colSpan="2">
                                 <input name="HEmail" type="text" className="form-control" onChange={this.updateHotel.bind(this)}  size="30" /></td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><b>Hotel Address</b></td>
+                                <td colSpan="2">
+                                <textarea name="HAddress" className="form-control" onChange={this.updateHotel.bind(this)}></textarea></td>
                             </tr>                            
                         </tbody>
                     </table>

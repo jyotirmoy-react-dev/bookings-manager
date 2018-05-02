@@ -35,6 +35,7 @@ class Bookingstemplate extends Component {
                         <tr><td><label>Hotel Contact Person:</label></td><td>{this.props.hotelDetails.HContact}</td></tr>
                         <tr><td><label>Hotel Phone:</label></td><td>{this.props.hotelDetails.HPhone}</td></tr>
                         <tr><td><label>Hotel Email Id:</label></td><td>{this.props.hotelDetails.HEmail}</td></tr>
+                        <tr><td><label>Hotel Address:</label></td><td>{this.props.hotelDetails.HAddress}</td></tr>
                         </tbody>
                     </table>
                

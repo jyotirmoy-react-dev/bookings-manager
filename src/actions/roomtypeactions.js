@@ -1,7 +1,7 @@
 import axios from 'axios';
 import C from './constants';
 import {addErrors} from './errorhandler';
-const baseUrl = "http://localhost:3000/api";
+const baseUrl = "https://intense-bastion-97088.herokuapp.com/api";
 if(window.sessionStorage.getItem('token')){
 axios.defaults.params = {
                 access_token: window

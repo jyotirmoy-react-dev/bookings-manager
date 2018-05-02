@@ -19,6 +19,10 @@ class Login extends Component {
         }
     }
     render() {
+        let loginBtnText = 'Login';
+        if(this.props.loginObj.checkinglogin){
+            loginBtnText = 'Checking';
+        }
         return (
             <div className="class-name">
             <div className="row">
@@ -43,7 +47,7 @@ class Login extends Component {
                                                     
                                                     <button type="submit"
                                                             className="btn btn-lg btn-primary btn-block" id="login">
-                                                        <span id="button"><i className="fa fa-hand-pointer-o" aria-hidden="true"></i> Login</span>
+                                                        <span id="button"><i className="fa fa-hand-pointer-o" aria-hidden="true"></i> {loginBtnText}</span>
                                                     </button>
 
                                                 </fieldset>
@@ -58,7 +62,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    
+    loginObj:state.loginall.loginstat
 })
 
 function  mapDispatchToProps(dispatch)  { 
